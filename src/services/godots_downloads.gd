@@ -1,4 +1,4 @@
-class_name GodotsDownloads
+class_name GHDownloads
 
 
 class I:
@@ -21,7 +21,7 @@ class Default extends I:
 		var asset_download := _asset_download_scene.instantiate() as AssetDownload
 		_downloads_container.add_download_item(asset_download)
 		asset_download.icon.texture = preload("res://icon.svg")
-		asset_download.start(url, (Config.DOWNLOADS_PATH.ret() as String) + "/", "Godots.zip")
+		asset_download.start(url, (Config.DOWNLOADS_PATH.ret() as String) + "/", "GodotHub.zip")
 		asset_download.downloaded.connect(func(abs_zip_path: String) -> void:
 			callback.call(abs_zip_path)
 		)

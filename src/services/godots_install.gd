@@ -1,4 +1,4 @@
-class_name GodotsInstall
+class_name GHInstall
 
 
 class I:
@@ -24,12 +24,12 @@ class Default extends I:
 		
 		zip.unzip(abs_zip_path, unzip_dir)
 		if OS.has_feature("macos"):
-			# weired stuff since macOs.zip is nested: macOs.zip -> Godots.zip -> Godots.app o:
-			zip.unzip(unzip_dir.path_join("Godots.zip"), unzip_dir)
+			# weired stuff since macOs.zip is nested: macOs.zip -> GodotHub.zip -> GodotHub.app o:
+			zip.unzip(unzip_dir.path_join("GodotHub.zip"), unzip_dir)
 		
 		if OS.has_feature("windows"):
 			var downloaded_exe_path := ProjectSettings.globalize_path(
-				unzip_dir.path_join("Godots.exe")
+				unzip_dir.path_join("GodotHub.exe")
 			)
 			DirAccess.rename_absolute(_current_exe_path, _current_exe_path + ".old")
 			DirAccess.copy_absolute(downloaded_exe_path, _current_exe_path)
@@ -37,7 +37,7 @@ class Default extends I:
 			OS.create_process(_current_exe_path, [])
 		elif OS.has_feature("linux"):
 			var downloaded_exe_path := ProjectSettings.globalize_path(
-				unzip_dir.path_join("Godots.x86_64")
+				unzip_dir.path_join("GodotHub.x86_64")
 			)
 			DirAccess.rename_absolute(_current_exe_path, _current_exe_path + ".old")
 			DirAccess.copy_absolute(downloaded_exe_path, _current_exe_path)
@@ -54,7 +54,7 @@ class Default extends I:
 				return
 			var parent_app_dir := app_path.get_base_dir()
 			var downloaded_app_path := ProjectSettings.globalize_path(
-				unzip_dir.path_join("Godots.app")
+				unzip_dir.path_join("GodotHub.app")
 			)
 			OS.execute("cp", ["-rf", downloaded_app_path, parent_app_dir])
 			_tree.quit()

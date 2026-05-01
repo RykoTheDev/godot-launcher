@@ -1,4 +1,4 @@
-class_name GodotsReleasesControl
+class_name GHReleasesControl
 extends HBoxContainer
 
 @onready var _godots_releases_list := %GodotsReleasesList as VBoxList
@@ -6,17 +6,17 @@ extends HBoxContainer
 @onready var _refresh_button := %RefreshButton as Button
 @onready var _star_git_hub := %StarGitHub as Button
 
-var _releases: GodotsReleases.I
-var _godots_downloads: GodotsDownloads.I
-var _godots_install: GodotsInstall.I
+var _releases: GHReleases.I
+var _godots_downloads: GHDownloads.I
+var _godots_install: GHInstall.I
 var _data_loaded := false
 var _fetching := false
 
 
 func init(
-	releases: GodotsReleases.I,
-	godots_downloads: GodotsDownloads.I,
-	godots_install: GodotsInstall.I
+	releases: GHReleases.I,
+	godots_downloads: GHDownloads.I,
+	godots_install: GHInstall.I
 ) -> void:
 	self._releases = releases
 	self._godots_install = godots_install
@@ -56,7 +56,7 @@ func _async_refetch_data_body() -> void:
 	_godots_releases_list.refresh(_releases.all())
 
 
-func _on_godots_releases_list_item_selected(item: GodotsReleasesListItemControl) -> void:
+func _on_godots_releases_list_item_selected(item: GHReleasesListItemControl) -> void:
 	_sidebar.refresh_actions(item.get_actions())
 
 

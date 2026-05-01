@@ -2,7 +2,7 @@ class_name CliMain
 
 static func main(args: PackedStringArray, app_args: PackedStringArray) -> void:
 	if (args.size() >= 1):
-		var parser := CliParser.CommandParser.new(CliGrammar.new(GodotsCommands.commands))
+		var parser := CliParser.CommandParser.new(CliGrammar.new(GHCommands.commands))
 		var cmd := parser.parse_command(args)
 
 		if not cmd.has_error():

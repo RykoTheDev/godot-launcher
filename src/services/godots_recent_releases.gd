@@ -1,4 +1,4 @@
-class_name GodotsRecentReleases
+class_name GHRecentReleases
 
 
 class I:
@@ -7,9 +7,9 @@ class I:
 
 
 class Default extends I:
-	var _releases: GodotsReleases.I
+	var _releases: GHReleases.I
 	
-	func _init(releases: GodotsReleases.I) -> void:
+	func _init(releases: GHReleases.I) -> void:
 		_releases = releases
 
 	func async_has_updates() -> bool:

@@ -2,7 +2,7 @@ class_name Help
 
 class Route extends Routes.Item:
 	func route(cmd: CliParser.ParsedCommandResult, user_args: PackedStringArray) -> void:
-		Help.new().execute(Request.new(GodotsCommands.commands))
+		Help.new().execute(Request.new(GHCommands.commands))
 	
 	func match(cmd: CliParser.ParsedCommandResult, user_args: PackedStringArray) -> bool:
 		return cmd.args.has_options(["ghelp", "gh"])

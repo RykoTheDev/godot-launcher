@@ -274,7 +274,7 @@ func _enter_tree() -> void:
 	_random_project_names.set_suffixes(RANDOM_PROJECT_SUFFIXES.ret() as Array)
 	_random_project_names.set_topics(RANDOM_PROJECT_TOPICS.ret() as Array)
 	
-	AGENT = "Godots/%s (%s) Godot/%s" % [
+	AGENT = "GodotHub/%s (%s) Godot/%s" % [
 		VERSION, 
 		OS.get_name(), 
 		Engine.get_version_info().string

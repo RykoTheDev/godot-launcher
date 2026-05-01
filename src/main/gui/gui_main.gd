@@ -6,17 +6,13 @@ const theme_source = preload("res://theme/theme.gd")
 @export var _local_editors: LocalEditorsControl
 @export var _projects: ProjectsControl
 @export var _asset_lib_projects: AssetLibProjects
-@export var _godots_releases: GodotsReleasesControl
-@export var _auto_updates: AutoUpdates
 @export var _asset_download: PackedScene
 @export var _title_tabs: BoxContainer
-@export var _updates: Control
 @export var _tab_container: TabContainer
 
 
 @onready var _gui_base: Panel = get_node("%GuiBase")
 @onready var _main_v_box: VBoxContainer = get_node("%MainVBox")
-@onready var _version_button: LinkButton = %VersionButton
 @onready var _settings_button: Button = %SettingsButton
 
 
@@ -97,19 +93,6 @@ func _ready() -> void:
 	_local_editors.editor_download_pressed.connect(func() -> void:
 		_tab_container.current_tab = _tab_container.get_tab_idx_from_control(_remote_editors)
 	)
-
-	_version_button.text = Config.VERSION.substr(1)
-	_version_button.self_modulate = Color(1, 1, 1, 0.6)
-	_version_button.underline = LinkButton.UNDERLINE_MODE_ON_HOVER
-	_version_button.pressed.connect(func() -> void:
-		_tab_container.current_tab = _tab_container.get_tab_idx_from_control(_updates)
-	)
-	_version_button.tooltip_text = tr("Click to see other versions.")
-	
-	var news_buttons := %NewsButton as LinkButton
-	news_buttons.self_modulate = Color(1, 1, 1, 0.6)
-	news_buttons.underline = LinkButton.UNDERLINE_MODE_ON_HOVER
-	news_buttons.tooltip_text = tr("Click to see the post.")
 	
 	_settings_button.flat = true
 	#_settings_button.text = tr("Settings")
@@ -282,31 +265,17 @@ func _setup_asset_lib_projects() -> void:
 
 
 func _setup_godots_releases() -> void:
-	var godots_releases := GodotsReleases.Default.new(
-		GodotsReleases.SrcGithub.new()
+	var godots_releases := GHReleases.Default.new(
+		GHReleases.SrcGithub.new()
 	)
-	var godots_install: GodotsInstall.I
+	var godots_install: GHInstall.I
 	if OS.has_feature("template"):
-		godots_install = GodotsInstall.Default.new(
+		godots_install = GHInstall.Default.new(
 			OS.get_executable_path(),
 			get_tree()
 		)
 	else:
-		godots_install = GodotsInstall.Forbidden.new(self)
-
-	_auto_updates.init(
-		GodotsRecentReleases.Cached.new(
-			GodotsRecentReleases.Default.new(godots_releases)
-		), 
-		func() -> void: 
-			_tab_container.current_tab = _tab_container.get_tab_idx_from_control(_godots_releases)
-	)
-	_godots_releases.init(
-		godots_releases,
-		GodotsDownloads.Default.new((%DownloadsContainer as DownloadsContainer), _asset_download),
-		godots_install
-	)
-
+		godots_install = GHInstall.Forbidden.new(self)
 
 class TitleTabButton extends Button:
 	var _icon_name: String

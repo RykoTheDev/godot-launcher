@@ -1,4 +1,4 @@
-class_name GodotsCommands
+class_name GHCommands
 
 static var commands: Array[CliCommand] = [
 	CliCommand.new(

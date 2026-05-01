@@ -1,4 +1,4 @@
-class_name GodotsReleases
+class_name GHReleases
 
 
 class I:
@@ -52,7 +52,7 @@ class Default extends I:
 					return true
 			return false
 		else:
-			var release: GodotsReleases.Release
+			var release: GHReleases.Release
 			if Config.ONLY_STABLE_UPDATES.ret():
 				var json: Variant = await _src.async_latest()
 				release = _to_release_or_null(json)

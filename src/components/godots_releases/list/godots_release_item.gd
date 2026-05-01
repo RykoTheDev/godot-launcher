@@ -1,4 +1,4 @@
-class_name GodotsReleasesListItemControl
+class_name GHReleasesListItemControl
 extends HBoxListItem
 
 signal download_and_install_requested(url: String)
@@ -13,7 +13,7 @@ var _tags := []
 var _get_actions_callback: Callable
 
 
-func init(item: GodotsReleases.Release) -> void:
+func init(item: GHReleases.Release) -> void:
 	_tags = item.tags
 	
 	_title_label.text = item.name

@@ -136,7 +136,7 @@ func _prepare_settings() -> Array:
 			"application/advanced/check_only_stable_updates",
 			Config.ONLY_STABLE_UPDATES,
 			SettingCheckbox,
-			tr("Will check only stable Godots releases.")
+			tr("Will check only stable GodotHub releases.")
 		)),
 		SettingChangeObserved(SettingCfg(
 			"network/http_proxy/host",
@@ -205,7 +205,7 @@ func _ready() -> void:
 	right_vb.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	
 	
-	(%RestartInfoLabel as Label).text = tr("Godots must be restarted for changes to take effect.")
+	(%RestartInfoLabel as Label).text = tr("GodotHub must be restarted for changes to take effect.")
 	(%RestartButton as Button).pressed.connect(func() -> void:
 		Config.save()
 		get_tree().quit()
